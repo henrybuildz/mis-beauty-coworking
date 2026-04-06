@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIS Beauty Coworking — Vienna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory:   #FAF7F2;
+      --cream:   #F0EAE0;
+      --blush:   #E2C9B8;
+      --gold:    #B08A5E;
+      --gold-lt: #C8A87A;
+      --noir:    #1A1310;
+      --warm:    #3A2D25;
+      --muted:   #8A7A6E;
+      --white:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--ivory);
+      color: var(--warm);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* ─── Navigation ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.3rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(250, 247, 242, 0.93);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(176, 138, 94, 0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      transition: color 0.4s;
+      flex-shrink: 0;
+    }
+    nav.scrolled .nav-logo { color: var(--noir); }
+    .nav-logo span {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.5rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--gold) !important; }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+      transition: border-color 0.4s;
+    }
+    nav.scrolled .lang-toggle {
+      border-color: rgba(176, 138, 94, 0.35);
+    }
+    .lang-btn {
+      padding: 0.32rem 0.58rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-right: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    nav.scrolled .lang-btn {
+      border-right-color: rgba(176,138,94,0.25);
+      color: var(--muted);
+    }
+    .lang-btn:last-child { border-right: none; }
+    .lang-btn:hover { color: var(--gold-lt) !important; }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--white) !important;
+    }
+    nav.scrolled .lang-btn.active {
+      background: var(--gold);
+      color: var(--white) !important;
+    }
+
+    .nav-book-btn {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .nav-book-btn:hover { background: var(--gold); border-color: var(--gold); }
+    nav.scrolled .nav-book-btn { border-color: var(--gold); color: var(--gold); }
+    nav.scrolled .nav-book-btn:hover { background: var(--gold); color: var(--white); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: background 0.4s;
+    }
+    nav.scrolled .hamburger span { background: var(--noir); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--noir);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute;
+      top: 1.8rem; right: 2rem;
+      font-size: 1.5rem;
+      color: var(--ivory);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .mobile-lang {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-top: 1rem;
+    }
+    .mobile-lang .lang-btn {
+      font-size: 0.7rem;
+      padding: 0.45rem 0.8rem;
+      color: rgba(255,255,255,0.5);
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .mobile-lang .lang-btn:last-child { border-right: none; }
+    .mobile-lang .lang-btn.active { background: var(--gold); color: white !important; }
+
+    /* ─── Hero ─────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--noir);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+    }
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(176, 138, 94, 0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-ring:nth-child(1) { width: 600px; height: 600px; border-color: rgba(176,138,94,0.12); }
+    .hero-ring:nth-child(2) { width: 900px; height: 900px; }
+    .hero-ring:nth-child(3) { width: 1200px; height: 1200px; border-color: rgba(176,138,94,0.04); }
+
+    .hero-tag {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.63rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: 1.05;
+      color: var(--ivory);
+      letter-spacing: -0.01em;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+    .hero-headline em { font-style: normal; color: var(--gold-lt); }
+    .hero-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.92rem;
+      letter-spacing: 0.1em;
+      color: rgba(250, 247, 242, 0.48);
+      margin-top: 1.8rem;
+      max-width: 500px;
+      line-height: 1.9;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s ease 0.8s forwards;
+    }
+    .hero-cta {
+      margin-top: 3rem;
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.1s forwards;
+    }
+    .hero-cta:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 38px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─── Section Base ─────────────────────────────── */
+    section { padding: 7rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--noir);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.8rem 0; }
+
+    /* ─── Fade-in on scroll ────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+
+    /* ─── About ─────────────────────────────────────── */
+    #about { background: var(--ivory); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: var(--warm);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-ornament {
+      width: 270px;
+      height: 270px;
+      border: 1px solid var(--blush);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .about-ornament::before {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(176,138,94,0.25);
+      border-radius: 50%;
+    }
+    .about-ornament-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold);
+      text-align: center;
+      line-height: 1.55;
+      padding: 2rem;
+    }
+    .about-ornament-text small {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-style: normal;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.7rem;
+    }
+
+    /* ─── Services ──────────────────────────────────── */
+    #services { background: var(--cream); }
+    .services-header { text-align: center; margin-bottom: 4rem; }
+    .services-header .divider { margin: 1.8rem auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.8rem 1.8rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--blush), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 18px 46px rgba(26,19,16,0.08); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 1.6rem; margin-bottom: 1.2rem; display: block; }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--noir);
+      margin-bottom: 0.8rem;
+    }
+    .service-desc { font-size: 0.8rem; line-height: 1.8; color: var(--muted); font-weight: 300; }
+
+    /* ─── Reviews ───────────────────────────────────── */
+    #reviews { background: var(--noir); }
+    #reviews .section-label { color: var(--gold-lt); }
+    #reviews .section-title { color: var(--ivory); }
+    #reviews .divider { background: var(--gold-lt); }
+    .reviews-header { text-align: center; margin-bottom: 4rem; }
+    .reviews-header .divider { margin: 1.8rem auto; }
+    .stars { color: var(--gold-lt); font-size: 0.85rem; letter-spacing: 0.2em; margin-bottom: 0.4rem; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(176,138,94,0.15);
+      padding: 2.4rem;
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .review-card:hover { background: rgba(176,138,94,0.06); border-color: rgba(176,138,94,0.3); }
+    .review-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      line-height: 0.6;
+      color: var(--gold);
+      opacity: 0.3;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: rgba(250,247,242,0.85);
+      margin-bottom: 1.5rem;
+    }
+    .review-author {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .review-stars { font-size: 0.62rem; color: var(--gold-lt); letter-spacing: 0.1em; margin-top: 0.3rem; }
+    .reviews-row2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      max-width: 66.8%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── Location ──────────────────────────────────── */
+    #location { background: var(--ivory); }
+    .location-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .location-map {
+      width: 100%;
+      height: 400px;
+      filter: grayscale(20%) contrast(0.95);
+      border: none;
+      display: block;
+    }
+    .location-details { padding-top: 1rem; }
+    .location-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+    .location-icon { font-size: 1rem; color: var(--gold); margin-top: 0.1rem; flex-shrink: 0; }
+    .location-item-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .location-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem;
+      color: var(--noir);
+      line-height: 1.55;
+    }
+    .location-item-value a { color: var(--gold); transition: opacity 0.2s; }
+    .location-item-value a:hover { opacity: 0.75; }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer { background: var(--noir); padding: 3rem 2rem; }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: var(--ivory);
+    }
+    .footer-logo span {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.48rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .footer-right { display: flex; align-items: center; gap: 2rem; }
+    .footer-instagram {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      transition: color 0.3s;
+    }
+    .footer-instagram:hover { color: var(--gold); }
+    .footer-instagram svg { width: 17px; height: 17px; }
+    .footer-copy { font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(138,122,110,0.45); }
+
+    /* ─── Keyframes ─────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 1000px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links, .nav-book-btn { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 800px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { order: -1; }
+      .about-ornament { width: 210px; height: 210px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-row2 { grid-template-columns: 1fr; max-width: 100%; }
+      .location-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .location-map { height: 280px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+    }
+    @media (max-width: 500px) {
+      section { padding: 5rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+    <a href="#about"    onclick="closeMobileMenu()" data-i18n="nav_about">About</a>
+    <a href="#services" onclick="closeMobileMenu()" data-i18n="nav_services">Services</a>
+    <a href="#reviews"  onclick="closeMobileMenu()" data-i18n="nav_reviews">Reviews</a>
+    <a href="#location" onclick="closeMobileMenu()" data-i18n="nav_location">Location</a>
+    <a href="#location" onclick="closeMobileMenu()" style="color:var(--gold-lt);border:1px solid var(--gold-lt);padding:0.8rem 2rem;margin-top:0.5rem;" data-i18n="nav_book">Book an Appointment</a>
+    <div class="mobile-lang">
+      <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+      <button class="lang-btn"        onclick="setLang('de',this)">DE</button>
+      <button class="lang-btn"        onclick="setLang('ru',this)">RU</button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <div class="nav-logo">MIS<span>Beauty Coworking</span></div>
+    <ul class="nav-links">
+      <li><a href="#about"    data-i18n="nav_about">About</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#reviews"  data-i18n="nav_reviews">Reviews</a></li>
+      <li><a href="#location" data-i18n="nav_location">Location</a></li>
+    </ul>
+    <div class="lang-toggle" id="langToggle">
+      <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+      <button class="lang-btn"        onclick="setLang('de',this)">DE</button>
+      <button class="lang-btn"        onclick="setLang('ru',this)">RU</button>
+    </div>
+    <a href="#location" class="nav-book-btn" data-i18n="nav_book">Book an Appointment</a>
+    <div class="hamburger" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <p class="hero-tag" data-i18n="hero_tag">Vienna · Landstraße · Beauty Coworking</p>
+    <h1 class="hero-headline" data-i18n="hero_headline">Where beauty<br/><em>finds its space.</em></h1>
+    <p class="hero-sub" data-i18n="hero_sub">A curated coworking studio for independent nail artists — where craft, calm, and creativity share the same room.</p>
+    <a href="#location" class="hero-cta" data-i18n="nav_book">Book an Appointment</a>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span data-i18n="hero_scroll">Discover</span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-text fade-in">
+          <p class="section-label" data-i18n="about_label">Our Concept</p>
+          <h2 class="section-title" data-i18n="about_title">A modern studio,<br/><em>reimagined.</em></h2>
+          <div class="divider"></div>
+          <p data-i18n="about_p1">MIS Beauty Coworking is Vienna's intimate beauty studio where independent nail artists come together under one roof. Located in the heart of the city near Wien Mitte, we offer a refined, immaculate space designed for professionals who value their craft — and for clients who deserve more than a routine appointment.</p>
+          <p data-i18n="about_p2">It is not just a salon. It is a small escape — clean, modern, and warm — where every visit feels like a quiet moment of care in a busy city.</p>
+        </div>
+        <div class="about-visual fade-in stagger-2">
+          <div class="about-ornament">
+            <div class="about-ornament-text">
+              <span data-i18n="about_quote">"Like a little escape<br/>in the heart of Vienna."</span>
+              <small data-i18n="about_quote_attr">Our Guests</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header fade-in">
+        <p class="section-label" data-i18n="svc_label">What We Offer</p>
+        <h2 class="section-title" data-i18n="svc_title">Our <em>Services</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in stagger-1">
+          <span class="service-icon">✦</span>
+          <h3 class="service-name" data-i18n="svc1_name">Manicure</h3>
+          <p class="service-desc" data-i18n="svc1_desc">Classic and express manicures with meticulous attention to shape, cuticle care, and finish — tailored to your hands.</p>
+        </div>
+        <div class="service-card fade-in stagger-2">
+          <span class="service-icon">◇</span>
+          <h3 class="service-name" data-i18n="svc2_name">Pedicure</h3>
+          <p class="service-desc" data-i18n="svc2_desc">A restorative foot treatment that goes beyond polish — thorough, calming, and beautifully executed.</p>
+        </div>
+        <div class="service-card fade-in stagger-3">
+          <span class="service-icon">❋</span>
+          <h3 class="service-name" data-i18n="svc3_name">Acrylic Nails</h3>
+          <p class="service-desc" data-i18n="svc3_desc">Durable extensions crafted with precision — from natural-length enhancements to bold sculptural shapes.</p>
+        </div>
+        <div class="service-card fade-in stagger-4">
+          <span class="service-icon">○</span>
+          <h3 class="service-name" data-i18n="svc4_name">Gel Nails</h3>
+          <p class="service-desc" data-i18n="svc4_desc">Long-lasting gel colour and overlays with a flawless, mirror-smooth finish that endures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <p class="section-label" data-i18n="rev_label">Guest Voices</p>
+        <h2 class="section-title" data-i18n="rev_title">What our clients <em>say</em></h2>
+        <div class="divider" style="margin:1.8rem auto;background:var(--gold-lt);"></div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-in stagger-1">
+          <span class="review-quote-mark">"</span>
+          <p class="review-text" data-i18n="rev1">Always beautifully done — clean, precise, and with a genuine love for detail that you notice from the very first visit.</p>
+          <p class="review-author" data-i18n="rev_author">Verified Guest</p>
+          <p class="review-stars">★★★★★</p>
+        </div>
+        <div class="review-card fade-in stagger-2">
+          <span class="review-quote-mark">"</span>
+          <p class="review-text" data-i18n="rev2">The team is incredibly warm, the prices are fair, and every treatment is carried out swiftly and with complete professionalism.</p>
+          <p class="review-author" data-i18n="rev_author">Verified Guest</p>
+          <p class="review-stars">★★★★★</p>
+        </div>
+        <div class="review-card fade-in stagger-3">
+          <span class="review-quote-mark">"</span>
+          <p class="review-text" data-i18n="rev3">Solomiya is a true master of her craft. My nails are notoriously tricky, yet she delivers stunning results every single time.</p>
+          <p class="review-author" data-i18n="rev_author">Verified Guest</p>
+          <p class="review-stars">★★★★★</p>
+        </div>
+      </div>
+      <div class="reviews-row2">
+        <div class="review-card fade-in stagger-1">
+          <span class="review-quote-mark">"</span>
+          <p class="review-text" data-i18n="rev4">The atmosphere is modern, spotlessly clean, and yet so inviting. The work itself is nothing short of meticulous.</p>
+          <p class="review-author" data-i18n="rev_author">Verified Guest</p>
+          <p class="review-stars">★★★★★</p>
+        </div>
+        <div class="review-card fade-in stagger-2">
+          <span class="review-quote-mark">"</span>
+          <p class="review-text" data-i18n="rev5">This isn't just a manicure — it's a real moment of relaxation. I leave feeling genuinely cared for every time.</p>
+          <p class="review-author" data-i18n="rev_author">Verified Guest</p>
+          <p class="review-stars">★★★★★</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location">
+    <div class="container">
+      <div class="location-inner">
+        <div class="fade-in">
+          <p class="section-label" data-i18n="loc_label">Find Us</p>
+          <h2 class="section-title" data-i18n="loc_title">Come <em>visit us</em><br/>in Vienna.</h2>
+          <div class="divider"></div>
+          <div class="location-details">
+            <div class="location-item">
+              <div class="location-icon">◈</div>
+              <div>
+                <p class="location-item-label" data-i18n="loc_addr_label">Address</p>
+                <p class="location-item-value">Marxergasse 7<br/>1030 Wien, Austria</p>
+              </div>
+            </div>
+            <div class="location-item">
+              <div class="location-icon">◈</div>
+              <div>
+                <p class="location-item-label" data-i18n="loc_phone_label">Phone</p>
+                <p class="location-item-value"><a href="tel:+66493020595">066 493 020 595</a></p>
+              </div>
+            </div>
+            <div class="location-item">
+              <div class="location-icon">◈</div>
+              <div>
+                <p class="location-item-label" data-i18n="loc_transit_label">How to get here</p>
+                <p class="location-item-value" data-i18n="loc_transit_val">U3 · Wien Mitte<br/>5 minutes on foot</p>
+              </div>
+            </div>
+            <div class="location-item">
+              <div class="location-icon">◈</div>
+              <div>
+                <p class="location-item-label" data-i18n="loc_appt_label">Appointments</p>
+                <p class="location-item-value" data-i18n="loc_appt_val">By booking only<br/>
+                  <a href="https://www.instagram.com/mis_beauty_coworking/" target="_blank" rel="noopener">@mis_beauty_coworking</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in stagger-2">
+          <iframe
+            class="location-map"
+            src="https://maps.google.com/maps?q=Marxergasse+7,+1030+Wien,+Austria&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="MIS Beauty Coworking — Marxergasse 7, 1030 Wien"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">MIS<span>Beauty Coworking · Vienna</span></div>
+      <div class="footer-right">
+        <a href="https://www.instagram.com/mis_beauty_coworking/" class="footer-instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+          @mis_beauty_coworking
+        </a>
+        <p class="footer-copy">© 2026 MIS Beauty Coworking</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Translations ───────────────────────────────
+    const T = {
+      en: {
+        nav_about:    'About',
+        nav_services: 'Services',
+        nav_reviews:  'Reviews',
+        nav_location: 'Location',
+        nav_book:     'Book an Appointment',
+        hero_tag:     'Vienna · Landstraße · Beauty Coworking',
+        hero_headline:'Where beauty<br/><em>finds its space.</em>',
+        hero_sub:     'A curated coworking studio for independent nail artists — where craft, calm, and creativity share the same room.',
+        hero_scroll:  'Discover',
+        about_label:  'Our Concept',
+        about_title:  'A modern studio,<br/><em>reimagined.</em>',
+        about_p1:     'MIS Beauty Coworking is Vienna\'s intimate beauty studio where independent nail artists come together under one roof. Located in the heart of the city near Wien Mitte, we offer a refined, immaculate space designed for professionals who value their craft — and for clients who deserve more than a routine appointment.',
+        about_p2:     'It is not just a salon. It is a small escape — clean, modern, and warm — where every visit feels like a quiet moment of care in a busy city.',
+        about_quote:  '"Like a little escape<br/>in the heart of Vienna."',
+        about_quote_attr: 'Our Guests',
+        svc_label:    'What We Offer',
+        svc_title:    'Our <em>Services</em>',
+        svc1_name:    'Manicure',
+        svc1_desc:    'Classic and express manicures with meticulous attention to shape, cuticle care, and finish — tailored to your hands.',
+        svc2_name:    'Pedicure',
+        svc2_desc:    'A restorative foot treatment that goes beyond polish — thorough, calming, and beautifully executed.',
+        svc3_name:    'Acrylic Nails',
+        svc3_desc:    'Durable extensions crafted with precision — from natural-length enhancements to bold sculptural shapes.',
+        svc4_name:    'Gel Nails',
+        svc4_desc:    'Long-lasting gel colour and overlays with a flawless, mirror-smooth finish that endures.',
+        rev_label:    'Guest Voices',
+        rev_title:    'What our clients <em>say</em>',
+        rev_author:   'Verified Guest',
+        rev1: 'Always beautifully done — clean, precise, and with a genuine love for detail that you notice from the very first visit.',
+        rev2: 'The team is incredibly warm, the prices are fair, and every treatment is carried out swiftly and with complete professionalism.',
+        rev3: 'Solomiya is a true master of her craft. My nails are notoriously tricky, yet she delivers stunning results every single time.',
+        rev4: 'The atmosphere is modern, spotlessly clean, and yet so inviting. The work itself is nothing short of meticulous.',
+        rev5: 'This isn\'t just a manicure — it\'s a real moment of relaxation. I leave feeling genuinely cared for every time.',
+        loc_label:         'Find Us',
+        loc_title:         'Come <em>visit us</em><br/>in Vienna.',
+        loc_addr_label:    'Address',
+        loc_phone_label:   'Phone',
+        loc_transit_label: 'How to get here',
+        loc_transit_val:   'U3 · Wien Mitte<br/>5 minutes on foot',
+        loc_appt_label:    'Appointments',
+        loc_appt_val:      'By booking only<br/><a href="https://www.instagram.com/mis_beauty_coworking/" target="_blank" rel="noopener">@mis_beauty_coworking</a>',
+      },
+      de: {
+        nav_about:    'Über uns',
+        nav_services: 'Leistungen',
+        nav_reviews:  'Bewertungen',
+        nav_location: 'Kontakt',
+        nav_book:     'Termin buchen',
+        hero_tag:     'Wien · Landstraße · Beauty Coworking',
+        hero_headline:'Wo Schönheit<br/><em>ihren Raum findet.</em>',
+        hero_sub:     'Ein kuratiertes Coworking-Studio für selbstständige Nagelkünstlerinnen — wo Handwerk, Ruhe und Kreativität unter einem Dach vereint sind.',
+        hero_scroll:  'Entdecken',
+        about_label:  'Unser Konzept',
+        about_title:  'Ein modernes Studio,<br/><em>neu gedacht.</em>',
+        about_p1:     'MIS Beauty Coworking ist Wiens intimes Beauty-Studio, wo selbstständige Nagelkünstlerinnen unter einem Dach zusammenkommen. Zentral gelegen nahe Wien Mitte bieten wir einen gepflegten, makellosen Raum für Profis, die ihr Handwerk lieben — und für Kunden, die mehr als einen gewöhnlichen Termin verdienen.',
+        about_p2:     'Es ist nicht nur ein Salon. Es ist eine kleine Auszeit — sauber, modern und warm — wo jeder Besuch sich wie ein ruhiger Moment der Fürsorge in einer geschäftigen Stadt anfühlt.',
+        about_quote:  '„Ein kleiner Rückzugsort<br/>im Herzen Wiens."',
+        about_quote_attr: 'Unsere Gäste',
+        svc_label:    'Unser Angebot',
+        svc_title:    'Unsere <em>Leistungen</em>',
+        svc1_name:    'Maniküre',
+        svc1_desc:    'Klassische und Express-Maniküren mit sorgfältiger Formgebung, Nagelhautpflege und makellosem Finish — ganz auf Ihre Hände abgestimmt.',
+        svc2_name:    'Pediküre',
+        svc2_desc:    'Eine regenerierende Fußbehandlung, die weit über Nagellack hinausgeht — gründlich, entspannend und wunderschön ausgeführt.',
+        svc3_name:    'Acrylnägel',
+        svc3_desc:    'Langlebige Verlängerungen, präzise gesetzt — von natürlicher Länge bis zu ausdrucksstarken Formen.',
+        svc4_name:    'Gel-Nägel',
+        svc4_desc:    'Langanhaltende Gellacke und Overlays mit einem makellosen, spiegelglatten Finish.',
+        rev_label:    'Kundenstimmen',
+        rev_title:    'Was unsere Kunden <em>sagen</em>',
+        rev_author:   'Verifizierter Gast',
+        rev1: 'Immer wunderschön gemacht — sauber, präzise und mit echter Liebe zum Detail, die man schon beim ersten Besuch spürt.',
+        rev2: 'Das Team ist unglaublich herzlich, die Preise sind fair und jede Behandlung wird schnell und professionell durchgeführt.',
+        rev3: 'Solomiya ist eine wahre Meisterin ihres Faches. Meine Nägel sind schwierig, aber sie zaubert jedes Mal ein wunderschönes Ergebnis.',
+        rev4: 'Die Atmosphäre ist modern, blitzsauber und dennoch so einladend. Die Arbeit ist schlicht und ergreifend makellos.',
+        rev5: 'Das ist nicht einfach nur eine Maniküre — es ist ein echter Moment der Entspannung. Ich gehe jedes Mal mit einem Gefühl echter Fürsorge hinaus.',
+        loc_label:         'Uns finden',
+        loc_title:         'Besuchen Sie uns<br/><em>in Wien.</em>',
+        loc_addr_label:    'Adresse',
+        loc_phone_label:   'Telefon',
+        loc_transit_label: 'Anfahrt',
+        loc_transit_val:   'U3 · Wien Mitte<br/>5 Minuten zu Fuß',
+        loc_appt_label:    'Termine',
+        loc_appt_val:      'Nur nach Vereinbarung<br/><a href="https://www.instagram.com/mis_beauty_coworking/" target="_blank" rel="noopener">@mis_beauty_coworking</a>',
+      },
+      ru: {
+        nav_about:    'О нас',
+        nav_services: 'Услуги',
+        nav_reviews:  'Отзывы',
+        nav_location: 'Контакты',
+        nav_book:     'Записаться',
+        hero_tag:     'Вена · Ландштрассе · Бьюти-Коворкинг',
+        hero_headline:'Где красота<br/><em>обретает простор.</em>',
+        hero_sub:     'Камерная коворкинг-студия для независимых мастеров маникюра — место, где мастерство, спокойствие и творчество живут под одной крышей.',
+        hero_scroll:  'Открыть',
+        about_label:  'Наша концепция',
+        about_title:  'Современная студия,<br/><em>переосмысленная.</em>',
+        about_p1:     'MIS Beauty Coworking — это камерная бьюти-студия в Вене, где независимые мастера маникюра работают под одной крышей. Расположенная в самом центре города рядом с Вин Митте, мы предлагаем изысканное, безупречное пространство для профессионалов, ценящих своё мастерство, — и для клиентов, которые заслуживают большего, чем обычный визит.',
+        about_p2:     'Это не просто салон. Это маленький уголок спокойствия — чистый, современный и тёплый — где каждый визит ощущается как тихий момент заботы в суете большого города.',
+        about_quote:  '«Маленький уголок покоя<br/>в сердце Вены.»',
+        about_quote_attr: 'Наши гости',
+        svc_label:    'Что мы предлагаем',
+        svc_title:    'Наши <em>услуги</em>',
+        svc1_name:    'Маникюр',
+        svc1_desc:    'Классический и экспресс-маникюр с тщательной обработкой формы, кутикулы и финиша — с заботой о ваших руках.',
+        svc2_name:    'Педикюр',
+        svc2_desc:    'Восстанавливающая процедура для ног — тщательная, расслабляющая и безупречно выполненная.',
+        svc3_name:    'Акриловые ногти',
+        svc3_desc:    'Долговечное наращивание с точностью исполнения — от натуральной длины до смелых скульптурных форм.',
+        svc4_name:    'Гель-ногти',
+        svc4_desc:    'Стойкое гелевое покрытие с безупречным, зеркально-гладким финишем, который не подведёт.',
+        rev_label:    'Отзывы гостей',
+        rev_title:    'Что говорят <em>наши клиенты</em>',
+        rev_author:   'Подтверждённый гость',
+        rev1: 'Всегда безупречный результат — чисто, точно и с искренней любовью к деталям, которую замечаешь с первого же визита.',
+        rev2: 'Команда невероятно приветлива, цены честные, а каждая процедура выполняется быстро и с полным профессионализмом.',
+        rev3: 'Соломия — настоящий мастер своего дела. Мои ногти всегда были проблемой, но она каждый раз создаёт что-то прекрасное.',
+        rev4: 'Атмосфера современная, безупречно чистая и при этом невероятно уютная. Работа выполняется с педантичной точностью.',
+        rev5: 'Это не просто маникюр — это настоящий момент расслабления. Уходишь с ощущением искренней заботы.',
+        loc_label:         'Как нас найти',
+        loc_title:         'Приходите к нам<br/><em>в Вену.</em>',
+        loc_addr_label:    'Адрес',
+        loc_phone_label:   'Телефон',
+        loc_transit_label: 'Как добраться',
+        loc_transit_val:   'U3 · Вин Митте<br/>5 минут пешком',
+        loc_appt_label:    'Запись',
+        loc_appt_val:      'Только по предварительной записи<br/><a href="https://www.instagram.com/mis_beauty_coworking/" target="_blank" rel="noopener">@mis_beauty_coworking</a>',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang, clickedBtn) {
+      currentLang = lang;
+
+      // Update all i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (T[lang][key] !== undefined) {
+          el.innerHTML = T[lang][key];
+        }
+      });
+
+      // Sync all lang buttons (desktop + mobile)
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.trim().toLowerCase() === lang) btn.classList.add('active');
+      });
+
+      // Update html lang attr
+      document.documentElement.lang = lang;
+    }
+
+    // ─── Sticky nav ────────────────────────────────
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ─── Mobile menu ───────────────────────────────
+    const mobileMenu = document.getElementById('mobileMenu');
+    function openMobileMenu()  { mobileMenu.classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = '';       }
+
+    // ─── Scroll fade-in ────────────────────────────
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
